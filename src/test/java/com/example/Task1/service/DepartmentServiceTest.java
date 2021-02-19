@@ -23,7 +23,7 @@ public class DepartmentServiceTest {
     @Mock
     private WorkerService workerService;
     @InjectMocks
-    DepartmentService departmentService;
+    private DepartmentService departmentService;
 
 
     @Test

@@ -1,26 +1,22 @@
 package com.example.Task1.exception;
 
-import com.example.Task1.Task1Application;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import javax.xml.bind.ValidationException;
+import javax.validation.ValidationException;
 
-@Controller("error")
+@RestControllerAdvice
 public class ExceptionController {
 
-    private Logger logger = LoggerFactory.getLogger(Task1Application.class);
 
     @ExceptionHandler(ValidationException.class)
-    public void handleExceptions(){
-        logger.error("Validation Exception");
+    public ResponseEntity<String> handleExceptions(ValidationException e){
+        return new ResponseEntity<>(e.getMessage(),new HttpHeaders(), HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(Exception.class)
-    public void handleAllExceptions(){
-        logger.error("Exception");
-    }
+
 
 }
