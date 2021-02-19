@@ -25,7 +25,6 @@ public class LoggingAspect {
 
         LOGGER.info("Executing " + className + "." + methodName);
         stopWatch.start();
-        Object result = pJoinPoint.proceed();
         stopWatch.stop();
 
         LOGGER.info("Execution time of " + className + "." + methodName + " is " + stopWatch.getTotalTimeMillis() + " ms");
