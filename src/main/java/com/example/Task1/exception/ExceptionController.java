@@ -13,10 +13,13 @@ public class ExceptionController {
 
 
     @ExceptionHandler(ValidationException.class)
-    public ResponseEntity<String> handleExceptions(ValidationException e){
-        return new ResponseEntity<>("{\"error\": \"Validation Error\"}",new HttpHeaders(), HttpStatus.BAD_REQUEST);
+    public ResponseEntity<String> handleValidationExceptions(ValidationException e){
+        return new ResponseEntity<>("Validation Error",new HttpHeaders(), HttpStatus.BAD_REQUEST);
     }
 
-
-
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> handleExceptions(ValidationException e){
+        return new ResponseEntity<>("Bad request",new HttpHeaders(), HttpStatus.BAD_REQUEST);
+    }
+    
 }

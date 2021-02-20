@@ -38,9 +38,12 @@ public class DepartmentController {
     }
 
     @GetMapping("/departments")
-    public List<Department> retrieveDepartments() {
+    public ResponseEntity<List<Department>> retrieveDepartments() {
         List<Department> list = departmentService.findDepartments();
-        return list;
+        if(list == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(list);
     }
 
     @GetMapping("/departments/{departmentId}")
