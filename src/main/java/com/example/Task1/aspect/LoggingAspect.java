@@ -10,13 +10,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
 
-@Component
 @Aspect
+@Component
 public class LoggingAspect {
     private static final Logger LOGGER = LoggerFactory.getLogger(Task1Application.class);
 
     @Around("execution (* com.example.Task1.service.*.*(..))")
-    public void loggAllMethods(ProceedingJoinPoint pJoinPoint) throws Throwable{
+    public Object loggAllMethods(ProceedingJoinPoint pJoinPoint) throws Throwable{
 
         String className = pJoinPoint.getSignature().getDeclaringType().getSimpleName();
         String methodName = pJoinPoint.getSignature().getName();
@@ -25,10 +25,10 @@ public class LoggingAspect {
 
         LOGGER.info("Executing " + className + "." + methodName);
         stopWatch.start();
-        pJoinPoint.proceed();
+        Object result = pJoinPoint.proceed();
         stopWatch.stop();
 
         LOGGER.info("Execution time of " + className + "." + methodName + " is " + stopWatch.getTotalTimeMillis() + " ms");
-
+        return result;
     }
 }

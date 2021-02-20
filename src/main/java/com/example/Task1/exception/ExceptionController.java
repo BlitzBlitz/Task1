@@ -14,7 +14,7 @@ public class ExceptionController {
 
     @ExceptionHandler(ValidationException.class)
     public ResponseEntity<String> handleExceptions(ValidationException e){
-        return new ResponseEntity<>(e.getMessage(),new HttpHeaders(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("{\"error\": \"Validation Error\"}",new HttpHeaders(), HttpStatus.BAD_REQUEST);
     }
 
 
