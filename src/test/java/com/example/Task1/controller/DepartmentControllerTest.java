@@ -23,7 +23,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(DepartmentController.class)
+@WebMvcTest(value = DepartmentController.class)
 public class DepartmentControllerTest {
 
     @MockBean
