@@ -11,7 +11,6 @@ import javax.validation.ValidationException;
 @RestControllerAdvice
 public class ExceptionController {
 
-
     @ExceptionHandler(ValidationException.class)
     public ResponseEntity<String> handleValidationExceptions(ValidationException e){
         return new ResponseEntity<>("Validation Error",new HttpHeaders(), HttpStatus.BAD_REQUEST);
