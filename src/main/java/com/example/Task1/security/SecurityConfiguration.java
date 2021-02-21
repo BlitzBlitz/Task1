@@ -19,14 +19,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.httpBasic().and().authorizeRequests().antMatchers("/**")
-                .hasRole("ADMIN").anyRequest().authenticated()
-                .and().csrf().disable()
-                .headers().frameOptions().disable();
+                .hasRole("ADMIN").anyRequest().authenticated();
+//                .and().csrf().disable()
+//                .headers().frameOptions().disable();
     }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
-        BCryptPasswordEncoder bCryptEncoder = new BCryptPasswordEncoder();
-        return bCryptEncoder;
+        return new BCryptPasswordEncoder();
     }
 }
